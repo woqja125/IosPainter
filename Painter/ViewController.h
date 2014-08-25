@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class PainterView;
+
 @interface ViewController : UIViewController
+{
+    IBOutlet PainterView *v;
+    IBOutlet UISlider *slider;
+    IBOutlet UILabel *label;
+    float width;
+}
+-(IBAction)draw:(id)sender;
+-(IBAction)erase:(id)sender;
+-(IBAction)widthChanged:(id)sender;
 
 @end

@@ -22,6 +22,7 @@
 		D0ADF92119AAB8CD0068A73D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ADF90019AAB8CD0068A73D /* UIKit.framework */; };
 		D0ADF92919AAB8CD0068A73D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D0ADF92719AAB8CD0068A73D /* InfoPlist.strings */; };
 		D0ADF92B19AAB8CD0068A73D /* PainterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF92A19AAB8CD0068A73D /* PainterTests.m */; };
+		D0ADF93619AAB9A60068A73D /* PainterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ADF93519AAB9A60068A73D /* PainterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		D0ADF92619AAB8CD0068A73D /* PainterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PainterTests-Info.plist"; sourceTree = "<group>"; };
 		D0ADF92819AAB8CD0068A73D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0ADF92A19AAB8CD0068A73D /* PainterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PainterTests.m; sourceTree = "<group>"; };
+		D0ADF93419AAB9A60068A73D /* PainterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainterView.h; sourceTree = "<group>"; };
+		D0ADF93519AAB9A60068A73D /* PainterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				D0ADF90C19AAB8CD0068A73D /* AppDelegate.m */,
 				D0ADF90E19AAB8CD0068A73D /* Main_iPhone.storyboard */,
 				D0ADF91119AAB8CD0068A73D /* Main_iPad.storyboard */,
+				D0ADF93419AAB9A60068A73D /* PainterView.h */,
+				D0ADF93519AAB9A60068A73D /* PainterView.m */,
 				D0ADF91419AAB8CD0068A73D /* ViewController.h */,
 				D0ADF91519AAB8CD0068A73D /* ViewController.m */,
 				D0ADF91719AAB8CD0068A73D /* Images.xcassets */,
@@ -255,6 +260,7 @@
 			files = (
 				D0ADF91619AAB8CD0068A73D /* ViewController.m in Sources */,
 				D0ADF90D19AAB8CD0068A73D /* AppDelegate.m in Sources */,
+				D0ADF93619AAB9A60068A73D /* PainterView.m in Sources */,
 				D0ADF90919AAB8CD0068A73D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,7 +399,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Painter/Painter-Prefix.pch";
 				INFOPLIST_FILE = "Painter/Painter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -406,7 +414,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Painter/Painter-Prefix.pch";
 				INFOPLIST_FILE = "Painter/Painter-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -470,6 +480,7 @@
 				D0ADF93019AAB8CD0068A73D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0ADF93119AAB8CD0068A73D /* Build configuration list for PBXNativeTarget "PainterTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +489,7 @@
 				D0ADF93319AAB8CD0068A73D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
