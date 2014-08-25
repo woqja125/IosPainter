@@ -26,6 +26,7 @@
 
 - (void)didReceiveMemoryWarning
 {
+    printf("aa\n");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

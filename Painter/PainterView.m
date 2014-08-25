@@ -29,13 +29,16 @@
 {
     CGFloat dat[]={0, 0, 0, 1};
     Width = 1;
-    col = CGColorCreate(CGColorSpaceCreateDeviceRGB(), dat);
+    CGColorSpaceRef ccs = CGColorSpaceCreateDeviceRGB();
+    col = CGColorCreate(ccs, dat);
+    CGColorSpaceRelease(ccs);
     Path = CGPathCreateMutable();
     W = self.frame.size.width;
     H = self.frame.size.height;
-    imgCon = CGBitmapContextCreate(NULL, 2*W, 2*H, 8, 2*W*4, CGColorSpaceCreateDeviceRGB()
+    imgCon = CGBitmapContextCreate(NULL, 2*W, 2*H, 8, 2*W*4, ccs
                                    , (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
     CGContextSetLineWidth(imgCon, 2);
+    CGColorSpaceRelease(ccs);
 }
 
 
@@ -44,7 +47,9 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef cr = UIGraphicsGetCurrentContext();
-    CGContextDrawImage(cr, CGRectMake(0, 0, W, H), CGBitmapContextCreateImage(imgCon));
+    CGImageRef img = CGBitmapContextCreateImage(imgCon);
+    CGContextDrawImage(cr, CGRectMake(0, 0, W, H), img);
+    CGImageRelease(img);
     
     CGContextSetLineWidth(cr, Width);
     
@@ -57,7 +62,10 @@
 {
     CGFloat dat[]={r/255.0, g/255.0, b/255.0, 1};
     CGColorRelease(col);
-    col = CGColorCreate(CGColorSpaceCreateDeviceRGB(), dat);
+    
+    CGColorSpaceRef ccs = CGColorSpaceCreateDeviceRGB();
+    col = CGColorCreate(ccs, dat);
+    CGColorSpaceRelease(ccs);
     //CGPath
 }
 
