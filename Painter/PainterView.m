@@ -47,9 +47,9 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef cr = UIGraphicsGetCurrentContext();
-    CGImageRef img = CGBitmapContextCreateImage(imgCon);
-    CGContextDrawImage(cr, CGRectMake(0, 0, W, H), img);
-    CGImageRelease(img);
+    CGImageRef image = CGBitmapContextCreateImage(imgCon);
+    CGContextDrawImage(cr, CGRectMake(0, 0, W, H), image);
+    CGImageRelease(image);
     
     CGContextSetLineWidth(cr, Width);
     

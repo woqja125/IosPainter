@@ -13,8 +13,7 @@
     int W, H;
     NSMutableSet *pathes;
     CGContextRef imgCon;
-    CGImageRef img;
-    CGPathRef Path;
+    CGMutablePathRef Path;
     CGColorRef col;
     CGFloat Width;
 }
