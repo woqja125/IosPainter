@@ -11,11 +11,10 @@
 @interface PainterView : UIView
 {
     int W, H;
-    NSMutableSet *pathes;
     CGContextRef imgCon;
-    CGMutablePathRef Path;
     CGColorRef col;
     CGFloat Width;
+    NSMutableDictionary *Paths;
 }
 
 -(void)setColor:(int)r :(int)g :(int)b;

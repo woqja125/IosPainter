@@ -57,7 +57,7 @@
 		D0ADF92819AAB8CD0068A73D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0ADF92A19AAB8CD0068A73D /* PainterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PainterTests.m; sourceTree = "<group>"; };
 		D0ADF93419AAB9A60068A73D /* PainterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PainterView.h; sourceTree = "<group>"; };
-		D0ADF93519AAB9A60068A73D /* PainterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainterView.m; sourceTree = "<group>"; };
+		D0ADF93519AAB9A60068A73D /* PainterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PainterView.m; sourceTree = "<group>"; usesTabs = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

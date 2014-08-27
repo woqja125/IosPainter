@@ -32,7 +32,8 @@
     CGColorSpaceRef ccs = CGColorSpaceCreateDeviceRGB();
     col = CGColorCreate(ccs, dat);
     CGColorSpaceRelease(ccs);
-    Path = CGPathCreateMutable();
+    
+    Paths = [[NSMutableDictionary alloc] init];
     W = self.frame.size.width;
     H = self.frame.size.height;
     imgCon = CGBitmapContextCreate(NULL, 2*W, 2*H, 8, 2*W*4, ccs
@@ -53,9 +54,13 @@
     
     CGContextSetLineWidth(cr, Width);
     
-    CGContextAddPath(cr, Path);
-    CGContextSetStrokeColorWithColor(cr,col);
-    CGContextStrokePath(cr);
+	for(id p in [Paths allValues])
+	{
+		CGMutablePathRef path = (__bridge CGMutablePathRef)(p);
+		CGContextAddPath(cr, path);
+		CGContextSetStrokeColorWithColor(cr,col);
+		CGContextStrokePath(cr);
+	}
 }
 
 -(void)setColor:(int)r :(int)g :(int)b
@@ -66,45 +71,58 @@
     CGColorSpaceRef ccs = CGColorSpaceCreateDeviceRGB();
     col = CGColorCreate(ccs, dat);
     CGColorSpaceRelease(ccs);
-    //CGPath
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    UITouch *touch = [touches anyObject];
-    CGPoint loc = [touch locationInView:self];
-    CGPathMoveToPoint(Path, NULL, loc.x, loc.y);
+    for(UITouch *touch in touches)
+    {
+        CGPoint l = [touch locationInView:self];
+		NSString *key = [NSString stringWithFormat:@"%d", (int)touch];
+		CGMutablePathRef path = CGPathCreateMutable();
+		[Paths setValue:(__bridge id)(path) forKey:key];
+		CGPathMoveToPoint(path, NULL, l.x, l.y);
+	}
     [self setNeedsDisplay];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [super touchesMoved:touches withEvent:event];
-    UITouch *touch = [touches anyObject];
-    CGPoint loc = [touch locationInView:self];
-    CGPathAddLineToPoint(Path, NULL, loc.x, loc.y);
-    [self setNeedsDisplay];
+	[super touchesMoved:touches withEvent:event];
+    for(UITouch *touch in touches)
+    {
+		CGPoint l = [touch locationInView:self];
+		NSString *key = [NSString stringWithFormat:@"%d", (int)touch];
+		CGMutablePathRef path = (__bridge CGMutablePathRef)([Paths objectForKey:key]);	
+		CGPathAddLineToPoint(path, NULL, l.x, l.y);
+	}
+	[self setNeedsDisplay];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
-    UITouch *touch = [touches anyObject];
-    CGPoint loc = [touch locationInView:self];
-    CGPathAddLineToPoint(Path, NULL, loc.x, loc.y);
-    
+	
     CGAffineTransform scaleTransform = CGAffineTransformIdentity;
     scaleTransform = CGAffineTransformScale(scaleTransform, 2, 2);
-    CGPathRef tmp = CGPathCreateMutableCopyByTransformingPath(Path, &scaleTransform);
-    
-    CGContextAddPath(imgCon, tmp);
-    CGContextSetStrokeColorWithColor(imgCon,col);
-    CGContextStrokePath(imgCon);
-    
-    CGPathRelease(tmp);
-    CGPathRelease(Path);
-    Path = CGPathCreateMutable();
+	for(UITouch *touch in touches)
+    {
+		CGPoint l = [touch locationInView:self];
+		NSString *key = [NSString stringWithFormat:@"%d", (int)touch];
+		CGMutablePathRef path = (__bridge CGMutablePathRef)([Paths objectForKey:key]);
+		CGPathAddLineToPoint(path, NULL, l.x, l.y);
+		
+		CGPathRef tmp = CGPathCreateMutableCopyByTransformingPath(path, &scaleTransform);
+		CGContextAddPath(imgCon, tmp);
+		CGContextSetStrokeColorWithColor(imgCon,col);
+		CGContextStrokePath(imgCon);
+		
+		CGPathRelease(tmp);
+		
+		[Paths removeObjectForKey:key];
+		CGPathRelease(path);
+	}
     [self setNeedsDisplay];
 }
 
